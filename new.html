@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Builder</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    h1, h2, h3, h5 {
+      color: #2c3e50;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    #resumeCard {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    #resumeCard h3 {
+      margin-bottom: 5px;
+    }
+
+    .section-title {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .contact-line {
+      font-size: 14px;
+      color: #444;
+    }
+
+    textarea, input {
+      background-color: #fefefe;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container my-5">
+  <h1 class="text-center mb-4">📝 Resume Builder</h1>
+
+  <!-- Form -->
+  <form id="resumeForm">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fullName" required />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" required />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Phone</label>
+        <input type="text" class="form-control" id="phone" required />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">LinkedIn</label>
+        <input type="url" class="form-control" id="linkedin" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">GitHub</label>
+        <input type="url" class="form-control" id="github" />
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Profile Summary</label>
+        <textarea class="form-control" id="summary" rows="2"></textarea>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Education</label>
+        <textarea class="form-control" id="education" rows="2" required></textarea>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Skills (comma-separated)</label>
+        <input class="form-control" id="skills" placeholder="e.g. HTML, CSS, JavaScript" required />
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Projects</label>
+        <textarea class="form-control" id="projects" rows="2"></textarea>
+      </div>
+      <div class="col-md-12">
+        <label class="form-label">Certifications</label>
+        <textarea class="form-control" id="certifications" rows="2"></textarea>
+      </div>
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary mt-3">Generate Resume</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Resume Output -->
+  <div id="resumePreview" class="mt-5 d-none">
+    <h2 class="text-center mb-3">📄 Your Resume</h2>
+    <div id="resumeCard">
+      <h3 id="displayName"></h3>
+      <p class="contact-line">
+        📧 <span id="displayEmail"></span> | 📱 <span id="displayPhone"></span><br>
+        🔗 <span id="displayLinkedIn"></span> | 💻 <span id="displayGitHub"></span>
+      </p>
+
+      <div class="section-title">Profile Summary</div>
+      <p id="displaySummary"></p>
+
+      <div class="section-title">Education</div>
+      <p id="displayEducation"></p>
+
+      <div class="section-title">Skills</div>
+      <ul id="displaySkills"></ul>
+
+      <div class="section-title">Projects</div>
+      <p id="displayProjects"></p>
+
+      <div class="section-title">Certifications</div>
+      <p id="displayCertifications"></p>
+    </div>
+
+    <div class="text-center mt-3">
+      <button id="downloadBtn" class="btn btn-success">⬇️ Download as PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script>
+  document.getElementById("resumeForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const linkedin = document.getElementById("linkedin").value;
+    const github = document.getElementById("github").value;
+    const summary = document.getElementById("summary").value;
+    const education = document.getElementById("education").value;
+    const skills = document.getElementById("skills").value.split(",");
+    const projects = document.getElementById("projects").value;
+    const certifications = document.getElementById("certifications").value;
+
+    document.getElementById("displayName").textContent = name;
+    document.getElementById("displayEmail").textContent = email;
+    document.getElementById("displayPhone").textContent = phone;
+    document.getElementById("displayLinkedIn").textContent = linkedin;
+    document.getElementById("displayGitHub").textContent = github;
+    document.getElementById("displaySummary").textContent = summary;
+    document.getElementById("displayEducation").textContent = education;
+    document.getElementById("displayProjects").textContent = projects;
+    document.getElementById("displayCertifications").textContent = certifications;
+
+    const skillsList = document.getElementById("displaySkills");
+    skillsList.innerHTML = "";
+    skills.forEach(skill => {
+      if (skill.trim() !== "") {
+        const li = document.createElement("li");
+        li.textContent = skill.trim();
+        skillsList.appendChild(li);
+      }
+    });
+
+    document.getElementById("resumePreview").classList.remove("d-none");
+    document.getElementById("resumePreview").scrollIntoView({ behavior: "smooth" });
+  });
+
+  document.getElementById("downloadBtn").addEventListener("click", function () {
+    const resumeCard = document.getElementById("resumeCard");
+
+    // Clone the resumeCard so the render is clean
+    const cloned = resumeCard.cloneNode(true);
+    cloned.style.display = "block";
+    cloned.style.position = "absolute";
+    cloned.style.top = "-9999px"; // move off screen
+    document.body.appendChild(cloned);
+
+    // Delay to ensure rendering
+    setTimeout(() => {
+      html2pdf()
+        .set({
+          margin: 0.4,
+          filename: 'resume.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        })
+        .from(cloned)
+        .save()
+        .then(() => {
+          document.body.removeChild(cloned); // cleanup after download
+        });
+    }, 500);
+  });
+</script>
+</body>
+</html>
