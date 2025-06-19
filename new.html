@@ -10,214 +10,191 @@
 
   <style>
     body {
-      background-color: #f8f9fa;
+      background-color: #f9f9f9;
       font-family: 'Segoe UI', sans-serif;
     }
 
-    h1, h2, h3, h5 {
-      color: #2c3e50;
+    h1 {
+      font-weight: bold;
+      color: #333;
     }
 
     form {
-      background: #fff;
+      background-color: #fff;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    label {
+      font-weight: 500;
+      color: #333;
+    }
+
+    textarea,
+    input {
+      background-color: #fefefe;
+    }
+
+    button {
+      width: 200px;
     }
 
     #resumeCard {
-      background: #fff;
-      padding: 30px;
+      background-color: #fff;
+      padding: 25px;
       border-radius: 10px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 800px;
-      margin: auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
-    #resumeCard h3 {
-      margin-bottom: 5px;
-    }
-
-    .section-title {
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: 600;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
-      margin-bottom: 10px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .contact-line {
-      font-size: 14px;
-      color: #444;
-    }
-
-    textarea, input {
-      background-color: #fefefe;
+    #downloadBtn {
+      width: auto;
     }
   </style>
 </head>
 <body>
 
-<div class="container my-5">
-  <h1 class="text-center mb-4">📝 Resume Builder</h1>
+  <div class="container my-5">
+    <h1 class="text-center mb-4">📝 Resume Builder</h1>
 
-  <!-- Form -->
-  <form id="resumeForm">
-    <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label">Full Name</label>
-        <input type="text" class="form-control" id="fullName" required />
+    <!-- Resume Form -->
+    <form id="resumeForm">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullName" required />
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required />
+        </div>
+        <div class="col-md-6">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="text" class="form-control" id="phone" required />
+        </div>
+        <div class="col-md-6">
+          <label for="linkedin" class="form-label">LinkedIn</label>
+          <input type="url" class="form-control" id="linkedin" />
+        </div>
+        <div class="col-md-6">
+          <label for="github" class="form-label">GitHub</label>
+          <input type="url" class="form-control" id="github" />
+        </div>
+        <div class="col-md-12">
+          <label for="education" class="form-label">Education</label>
+          <textarea class="form-control" id="education" rows="2" required></textarea>
+        </div>
+        <div class="col-md-12">
+          <label for="skills" class="form-label">Skills</label>
+          <textarea class="form-control" id="skills" rows="2" required></textarea>
+        </div>
+        <div class="col-md-12">
+          <label for="projects" class="form-label">Projects</label>
+          <textarea class="form-control" id="projects" rows="2"></textarea>
+        </div>
+        <div class="col-md-12">
+          <label for="certifications" class="form-label">Certifications</label>
+          <textarea class="form-control" id="certifications" rows="2"></textarea>
+        </div>
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-primary mt-3">Generate Resume</button>
+        </div>
       </div>
-      <div class="col-md-6">
-        <label class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" required />
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Phone</label>
-        <input type="text" class="form-control" id="phone" required />
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">LinkedIn</label>
-        <input type="url" class="form-control" id="linkedin" />
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">GitHub</label>
-        <input type="url" class="form-control" id="github" />
-      </div>
-      <div class="col-md-12">
-        <label class="form-label">Profile Summary</label>
-        <textarea class="form-control" id="summary" rows="2"></textarea>
-      </div>
-      <div class="col-md-12">
-        <label class="form-label">Education</label>
-        <textarea class="form-control" id="education" rows="2" required></textarea>
-      </div>
-      <div class="col-md-12">
-        <label class="form-label">Skills (comma-separated)</label>
-        <input class="form-control" id="skills" placeholder="e.g. HTML, CSS, JavaScript" required />
-      </div>
-      <div class="col-md-12">
-        <label class="form-label">Projects</label>
-        <textarea class="form-control" id="projects" rows="2"></textarea>
-      </div>
-      <div class="col-md-12">
-        <label class="form-label">Certifications</label>
-        <textarea class="form-control" id="certifications" rows="2"></textarea>
-      </div>
-      <div class="col-12 text-center">
-        <button type="submit" class="btn btn-primary mt-3">Generate Resume</button>
-      </div>
-    </div>
-  </form>
+    </form>
 
-  <!-- Resume Output -->
-  <div id="resumePreview" class="mt-5 d-none">
-    <h2 class="text-center mb-3">📄 Your Resume</h2>
-    <div id="resumeCard">
-      <h3 id="displayName"></h3>
-      <p class="contact-line">
-        📧 <span id="displayEmail"></span> | 📱 <span id="displayPhone"></span><br>
-        🔗 <span id="displayLinkedIn"></span> | 💻 <span id="displayGitHub"></span>
-      </p>
+    <!-- Resume Preview -->
+    <div id="resumePreview" class="mt-5 d-none">
+      <h2 class="text-center mb-4">📄 Generated Resume</h2>
+      <div id="resumeCard">
+        <h3 id="displayName" class="fw-bold"></h3>
+        <p>
+          📧 <span id="displayEmail"></span> | 📱 <span id="displayPhone"></span><br>
+          🔗 <span id="displayLinkedIn"></span> | 💻 <span id="displayGitHub"></span>
+        </p>
+        <hr />
+        <h5>🎓 Education</h5>
+        <p id="displayEducation"></p>
+        
+        <h5>🛠️ Skills</h5>
+        <ul id="displaySkills" class="mb-2"></ul>
+        
+        <h5>💼 Projects</h5>
+        <p id="displayProjects"></p>
+        
+        <h5>📜 Certifications</h5>
+        <p id="displayCertifications"></p>
+      </div>
 
-      <div class="section-title">Profile Summary</div>
-      <p id="displaySummary"></p>
-
-      <div class="section-title">Education</div>
-      <p id="displayEducation"></p>
-
-      <div class="section-title">Skills</div>
-      <ul id="displaySkills"></ul>
-
-      <div class="section-title">Projects</div>
-      <p id="displayProjects"></p>
-
-      <div class="section-title">Certifications</div>
-      <p id="displayCertifications"></p>
-    </div>
-
-    <div class="text-center mt-3">
-      <button id="downloadBtn" class="btn btn-success">⬇️ Download as PDF</button>
+      <!-- Download PDF Button -->
+      <div class="text-center mt-3">
+        <button id="downloadBtn" class="btn btn-success">⬇️ Download as PDF</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-  document.getElementById("resumeForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+  <!-- html2pdf.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    const name = document.getElementById("fullName").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const linkedin = document.getElementById("linkedin").value;
-    const github = document.getElementById("github").value;
-    const summary = document.getElementById("summary").value;
-    const education = document.getElementById("education").value;
-    const skills = document.getElementById("skills").value.split(",");
-    const projects = document.getElementById("projects").value;
-    const certifications = document.getElementById("certifications").value;
+  <!-- JS Logic -->
+  <script>
+    document.getElementById("resumeForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    document.getElementById("displayName").textContent = name;
-    document.getElementById("displayEmail").textContent = email;
-    document.getElementById("displayPhone").textContent = phone;
-    document.getElementById("displayLinkedIn").textContent = linkedin;
-    document.getElementById("displayGitHub").textContent = github;
-    document.getElementById("displaySummary").textContent = summary;
-    document.getElementById("displayEducation").textContent = education;
-    document.getElementById("displayProjects").textContent = projects;
-    document.getElementById("displayCertifications").textContent = certifications;
+      // Get form values
+      const name = document.getElementById("fullName").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const linkedin = document.getElementById("linkedin").value;
+      const github = document.getElementById("github").value;
+      const education = document.getElementById("education").value;
+      const skills = document.getElementById("skills").value;
+      const projects = document.getElementById("projects").value;
+      const certifications = document.getElementById("certifications").value;
 
-    const skillsList = document.getElementById("displaySkills");
-    skillsList.innerHTML = "";
-    skills.forEach(skill => {
-      if (skill.trim() !== "") {
-        const li = document.createElement("li");
-        li.textContent = skill.trim();
-        skillsList.appendChild(li);
-      }
+      // Display in resume preview
+      document.getElementById("displayName").textContent = name;
+      document.getElementById("displayEmail").textContent = email;
+      document.getElementById("displayPhone").textContent = phone;
+      document.getElementById("displayLinkedIn").textContent = linkedin;
+      document.getElementById("displayGitHub").textContent = github;
+      document.getElementById("displayEducation").textContent = education;
+      document.getElementById("displayProjects").textContent = projects;
+      document.getElementById("displayCertifications").textContent = certifications;
+
+      // Process skills into bullets
+      const skillsList = document.getElementById("displaySkills");
+      skillsList.innerHTML = ""; // Clear previous items
+
+      skills.split(",").forEach(skill => {
+        if (skill.trim() !== "") {
+          const li = document.createElement("li");
+          li.textContent = skill.trim();
+          skillsList.appendChild(li);
+        }
+      });
+
+      // Show the preview section
+      document.getElementById("resumePreview").classList.remove("d-none");
+      document.getElementById("resumePreview").scrollIntoView({ behavior: "smooth" });
     });
 
-    document.getElementById("resumePreview").classList.remove("d-none");
-    document.getElementById("resumePreview").scrollIntoView({ behavior: "smooth" });
-  });
+    // Download as PDF
+    document.getElementById("downloadBtn").addEventListener("click", function () {
+      const element = document.getElementById("resumeCard");
 
-  document.getElementById("downloadBtn").addEventListener("click", function () {
-    const resumeCard = document.getElementById("resumeCard");
+      const opt = {
+        margin: 0.5,
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
 
-    // Clone the resumeCard so the render is clean
-    const cloned = resumeCard.cloneNode(true);
-    cloned.style.display = "block";
-    cloned.style.position = "absolute";
-    cloned.style.top = "-9999px"; // move off screen
-    document.body.appendChild(cloned);
-
-    // Delay to ensure rendering
-    setTimeout(() => {
-      html2pdf()
-        .set({
-          margin: 0.4,
-          filename: 'resume.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-        })
-        .from(cloned)
-        .save()
-        .then(() => {
-          document.body.removeChild(cloned); // cleanup after download
-        });
-    }, 500);
-  });
-</script>
+      html2pdf().set(opt).from(element).save();
+    });
+  </script>
 </body>
 </html>
