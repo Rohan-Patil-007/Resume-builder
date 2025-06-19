@@ -1,2 +1,2 @@
 # Resume-builder-
-A website a resume for user
+A website that makes resume for user
